@@ -29,11 +29,13 @@ class MySurfaceView(context: Context?, attrs: AttributeSet?) : SurfaceView(conte
 
     }
     fun drawSomething(canvas:Canvas) {
-        var SrcRect: Rect = Rect(0, 0, SuperMan.width, SuperMan.height) //裁切
+        canvas.drawBitmap(BG, 0f, 0f, null)
+        var SrcRect:Rect = Rect(0, 0, SuperMan.width, SuperMan.height) //裁切
         var w:Int = SuperMan.width / 6
         var h:Int = SuperMan.height / 6
         var DestRect:Rect = Rect(0, 0, w, h)
         canvas.drawBitmap(SuperMan, SrcRect, DestRect, null)
+
 
     }
 
