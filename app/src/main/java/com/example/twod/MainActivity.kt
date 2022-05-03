@@ -1,5 +1,6 @@
 package com.example.twod
 
+import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnStop.isEnabled = true
         binding.btnStart.setOnClickListener(object:View.OnClickListener{
             override fun onClick(p0: View?) {
+                binding.surfaceView.Score=0
                 job=GlobalScope.launch(Dispatchers.Main) {
                     while(secondsLeft > 0) {
                         secondsLeft--
@@ -31,6 +33,9 @@ class MainActivity : AppCompatActivity() {
                         binding.btnStart.isEnabled = false
                         binding.btnStop.isEnabled = true
                         delay(25)
+                        var canvas: Canvas = binding.surfaceView.surfaceHolder.lockCanvas()
+                        binding.surfaceView.drawSomething(canvas)
+                        binding.surfaceView.surfaceHolder.unlockCanvasAndPost(canvas)
                     }
                 }
 
